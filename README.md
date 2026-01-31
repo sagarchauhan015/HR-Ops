@@ -8,8 +8,8 @@ This project simulates a basic internal HR tool and demonstrates end-to-end full
 
 ## 🌐 Live Application
 
-🔗 **Frontend:** https://your-frontend-url.vercel.app  
-🔗 **Backend API:** [https://your-backend-url.onrender.com](https://hrms-lite-backend-e5s6.onrender.com/api) 
+🔗 **Frontend:** [https://your-frontend-url.vercel.app](https://hrms-lite-frontend-psi.vercel.app/)  
+🔗 **Backend API:** [https://hrms-lite-backend-e5s6.onrender.com](https://hrms-lite-backend-e5s6.onrender.com/api) 
 
 ---
 
