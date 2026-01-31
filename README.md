@@ -9,7 +9,7 @@ This project simulates a basic internal HR tool and demonstrates end-to-end full
 ## 🌐 Live Application
 
 🔗 **Frontend:** https://your-frontend-url.vercel.app  
-🔗 **Backend API:** https://your-backend-url.onrender.com/api  
+🔗 **Backend API:** [https://your-backend-url.onrender.com](https://hrms-lite-backend-e5s6.onrender.com/api) 
 
 ---
 
@@ -26,11 +26,11 @@ HRMS Lite allows an admin to:
 
 ### 🗓 Attendance Management
 - 📝 Mark employee attendance (Present / Absent)  
-- 📅 Filter attendance by date *(Bonus)*  
+- 📅 Filter attendance by date 
 - 📊 View attendance history per employee  
-- ⭐ Display total present days *(Bonus)*  
+- ⭐ Display total present days
 
-### 📊 Dashboard (Bonus)
+### 📊 Dashboard
 - 👥 Total employees count  
 - 🗂 Total attendance records summary  
 
@@ -42,7 +42,6 @@ HRMS Lite allows an admin to:
 - ⚛️ React.js  
 - 🌐 Axios (API calls)  
 - 🧭 React Router  
-- 🎯 Responsive & clean UI  
 
 ### ⚙️ Backend
 - 🟢 Node.js  
@@ -71,34 +70,13 @@ MongoDB Atlas (Cloud DB)
 
 ---
 
-## 🖼 Application Snapshots
-
-### 👩‍💼 Employee Management  
-_Add, view and delete employees_
-
-![Employees Page](./screenshots/employees.png)
-
-### 🗓 Attendance Tracking  
-_Mark and filter attendance records_
-
-![Attendance Page](./screenshots/attendance.png)
-
-### 📊 Dashboard  
-_Quick HR statistics overview_
-
-![Dashboard](./screenshots/dashboard.png)
-
-*(You can add screenshots in a `/screenshots` folder and update paths if needed)*
-
----
-
 ## 💻 Steps to Run Locally
 
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/hrms-lite.git
-cd hrms-lite
+git clone https://github.com/sagarchauhan015/HR-Ops.git
+cd HR-Ops
 ```
 
 ---
@@ -106,7 +84,7 @@ cd hrms-lite
 ### 2️⃣ Backend Setup
 
 ```bash
-cd backend
+cd hrms-lite-backend
 npm install
 ```
 
@@ -133,7 +111,7 @@ Backend runs at:
 Open new terminal:
 
 ```bash
-cd frontend
+cd hrms-lite-frontend
 npm install
 ```
 
@@ -174,20 +152,11 @@ Frontend runs at:
 
 ---
 
-## 🌟 Bonus Features Implemented
+## 🌟 Features Implemented
 
 ✔ Filter attendance by date  
 ✔ Total present days per employee  
 ✔ Dashboard summary with employee & attendance counts  
-
----
-
-## 📬 Submission Checklist
-
-- ✅ Live frontend deployed  
-- ✅ Backend API deployed  
-- ✅ Public GitHub repository  
-- ✅ Functional, production-ready application  
 
 ---
 
