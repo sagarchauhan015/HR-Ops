@@ -1,4 +1,4 @@
-# 🚀 HRMS Lite – Human Resource Management System
+# 🚀 HR Ops – Human Resource Management System
 
 A lightweight **full-stack HR management application** built to manage **employee records** and **daily attendance tracking** through a clean and professional web interface.
 
