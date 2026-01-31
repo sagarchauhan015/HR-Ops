@@ -23,35 +23,58 @@ export default function EmployeeForm({ onAdded }) {
   };
 
   return (
-    <form className="card" onSubmit={submit}>
-      <h3>Add Employee</h3>
-      <input
-        placeholder="Employee ID"
-        value={form.employeeId}
-        onChange={(e) => setForm({ ...form, employeeId: e.target.value })}
-        required
-      />
-      <input
-        placeholder="Full Name"
-        value={form.fullName}
-        onChange={(e) => setForm({ ...form, fullName: e.target.value })}
-        required
-      />
-      <input
-        type="email"
-        placeholder="Email"
-        value={form.email}
-        onChange={(e) => setForm({ ...form, email: e.target.value })}
-        required
-      />
-      <input
-        placeholder="Department"
-        value={form.department}
-        onChange={(e) => setForm({ ...form, department: e.target.value })}
-        required
-      />
-      {error && <p className="error">{error}</p>}
-      <button>Add</button>
+    <form className="card form-card" onSubmit={submit}>
+      <div className="form-header">
+        <h3>Add New Employee</h3>
+        <p className="subheader">Enter employee details below</p>
+      </div>
+
+      <div className="form-grid">
+        <div className="form-group">
+          <label>Employee ID</label>
+          <input
+            placeholder="e.g. RJ1001"
+            value={form.employeeId}
+            onChange={(e) => setForm({ ...form, employeeId: e.target.value })}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Full Name</label>
+          <input
+            placeholder="Sagar Chauhan"
+            value={form.fullName}
+            onChange={(e) => setForm({ ...form, fullName: e.target.value })}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Email Address</label>
+          <input
+            type="email"
+            placeholder="sagar@example.com"
+            value={form.email}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Department</label>
+          <input
+            placeholder="Engineering / HR / Sales"
+            value={form.department}
+            onChange={(e) => setForm({ ...form, department: e.target.value })}
+            required
+          />
+        </div>
+      </div>
+
+      {error && <div className="message error">{error}</div>}
+
+      <button className="primary-btn">Add Employee</button>
     </form>
   );
 }

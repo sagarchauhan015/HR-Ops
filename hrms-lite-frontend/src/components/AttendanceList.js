@@ -18,7 +18,6 @@ export default function AttendanceList() {
         setEmployees(res.data);
         if (res.data.length) setEmployeeId(res.data[0]._id);
       } catch (err) {
-        console.error("Error fetching employees:", err);
         setMsg({ text: "Failed to load employees", type: "error" });
       }
     };
@@ -26,6 +25,7 @@ export default function AttendanceList() {
   }, []);
 
   const presentDays = records.filter(r => r.status === "Present").length;
+
   const fetchAttendance = async () => {
     if (!employeeId) return;
     setLoading(true);
@@ -37,11 +37,7 @@ export default function AttendanceList() {
       setRecords(res.data);
       if (!res.data.length) setMsg({ text: "No records found", type: "info" });
       else setMsg(null);
-    } catch (err) {
-      console.error(
-        "Fetch attendance error:",
-        err.response?.data || err.message,
-      );
+    } catch {
       setMsg({ text: "Failed to fetch attendance", type: "error" });
     } finally {
       setLoading(false);
@@ -49,48 +45,61 @@ export default function AttendanceList() {
   };
 
   return (
-    <div className="card">
-      <h3>Attendance Records</h3>
+    <div className="card attendance-card">
+      <div className="card-header-attendance">
+        <h3>Attendance Records</h3>
+      </div>
 
-      {msg && <div className={`center ${msg.type}`}>{msg.text}</div>}
+      {msg && <div className={`message-box ${msg.type}`}>{msg.text}</div>}
 
-      <label>Employee:</label>
-      <select
-        value={employeeId}
-        onChange={(e) => setEmployeeId(e.target.value)}
-      >
-        {employees.map((emp) => (
-          <option key={emp._id} value={emp._id}>
-            {emp.fullName} ({emp.department})
-          </option>
-        ))}
-      </select>
+      <div className="filters">
+        <div className="filter-group">
+          <label>Employee</label>
+          <select value={employeeId} onChange={(e) => setEmployeeId(e.target.value)}>
+            {employees.map((emp) => (
+              <option key={emp._id} value={emp._id}>
+                {emp.fullName} ({emp.department})
+              </option>
+            ))}
+          </select>
+        </div>
 
-      <label>Filter by Date:</label>
-      <input
-        type="date"
-        value={filterDate}
-        onChange={(e) => setFilterDate(e.target.value)}
-      />
+        <div className="filter-group">
+          <label>Filter by Date</label>
+          <input
+            type="date"
+            value={filterDate}
+            onChange={(e) => setFilterDate(e.target.value)}
+          />
+        </div>
 
-      <button onClick={fetchAttendance}>Fetch Attendance</button>
-
-      <p>
-        <strong>Total Present Days:</strong> {presentDays}
-      </p>
-
+        <button className="soft-primary" onClick={fetchAttendance}>
+          Fetch Attendance
+        </button>
+      </div>
 
       {loading && <Loader />}
       {!loading && !records.length && (
         <EmptyState text="No attendance records found." />
       )}
 
-      {records.map((r) => (
-        <div key={r._id} className="list-item">
-          <div>{new Date(r.date).toDateString()}</div>
-          <strong>{r.status}</strong>
+      <div className="present-badge">
+          Present Days: <strong>{presentDays}</strong>
         </div>
-      ))}
+
+      <div className="attendance-list">
+        {records.map((r) => (
+          <div
+            key={r._id}
+            className={`attendance-row ${r.status === "Present" ? "present" : "absent"}`}
+          >
+            <div className="attendance-date">
+              {new Date(r.date).toDateString()}
+            </div>
+            <div className="attendance-status">{r.status}</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

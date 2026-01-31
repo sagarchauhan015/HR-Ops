@@ -43,34 +43,49 @@ export default function AttendanceForm({ onMarked }) {
   };
 
   return (
-    <form className="card" onSubmit={submit}>
-      <h3>Mark Attendance</h3>
-      {msg && <div className={`center ${msg.type}`}>{msg.text}</div>}
+    <form className="card attendance-form" onSubmit={submit}>
+  <h3>Mark Attendance</h3>
 
-      <select
-        value={data.employee}
-        onChange={(e) => setData({ ...data, employee: e.target.value })}
-      >
-        {employees.map((emp) => (
-          <option key={emp._id} value={emp._id}>
-            {emp.fullName}
-          </option>
-        ))}
-      </select>
-      <input
-        type="date"
-        value={data.date}
-        onChange={(e) => setData({ ...data, date: e.target.value })}
-        required
-      />
-      <select
-        value={data.status}
-        onChange={(e) => setData({ ...data, status: e.target.value })}
-      >
-        <option>Present</option>
-        <option>Absent</option>
-      </select>
-      <button disabled={loading}>{loading ? "Submitting..." : "Submit"}</button>
-    </form>
-  );
+  {msg && <div className={`center ${msg.type}`}>{msg.text}</div>}
+
+  <div className="form-group">
+    <label>Employee</label>
+    <select
+      value={data.employee}
+      onChange={(e) => setData({ ...data, employee: e.target.value })}
+    >
+      {employees.map((emp) => (
+        <option key={emp._id} value={emp._id}>
+          {emp.fullName}
+        </option>
+      ))}
+    </select>
+  </div>
+
+  <div className="form-group">
+    <label>Date</label>
+    <input
+      type="date"
+      value={data.date}
+      onChange={(e) => setData({ ...data, date: e.target.value })}
+      required
+    />
+  </div>
+
+  <div className="form-group-attendance">
+    <label>Status</label>
+    <select
+      value={data.status}
+      onChange={(e) => setData({ ...data, status: e.target.value })}
+    >
+      <option>Present</option>
+      <option>Absent</option>
+    </select>
+  </div>
+
+  <button disabled={loading}>
+    {loading ? "Submitting..." : "Submit"}
+  </button>
+</form>
+    );
 }

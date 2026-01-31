@@ -27,21 +27,30 @@ export default function EmployeeList({ refreshTrigger }) {
   if (!employees.length) return <EmptyState text="No employees added yet." />;
 
   return (
-    <div className="card">
-      <h3>Employee List</h3>
-      {employees.map((emp) => (
-        <div key={emp._id} className="list-item">
-          <div>
-            <strong>{emp.fullName}</strong>
-            <p>
-              {emp.email} • {emp.department}
-            </p>
+    <div className="card list-card">
+      <div className="card-header">
+        <h3>Employees</h3>
+        <span className="muted-text">{employees.length} total</span>
+      </div>
+
+      <div className="divider"></div>
+
+      <div className="employee-list">
+        {employees.map((emp) => (
+          <div key={emp._id} className="employee-row">
+            <div className="employee-info">
+              <span className="employee-name">{emp.fullName}</span>
+              <span className="employee-meta">
+                {emp.email} • {emp.department}
+              </span>
+            </div>
+
+            <button className="danger soft-danger" onClick={() => remove(emp._id)}>
+              Remove
+            </button>
           </div>
-          <button className="danger" onClick={() => remove(emp._id)}>
-            Delete
-          </button>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

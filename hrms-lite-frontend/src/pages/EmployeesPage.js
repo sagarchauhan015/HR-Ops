@@ -4,10 +4,16 @@ import EmployeeList from "../components/EmployeeList";
 
 export default function EmployeesPage() {
   const [refresh, setRefresh] = useState(false);
+
   return (
-    <>
-      <EmployeeForm onAdded={()=>setRefresh(!refresh)} />
-      <EmployeeList refreshTrigger={refresh} />
-    </>
+    <div className="page-layout">
+      <div className="left-panel">
+        <EmployeeForm onAdded={() => setRefresh(!refresh)} />
+      </div>
+
+      <div className="right-panel">
+        <EmployeeList refreshTrigger={refresh} />
+      </div>
+    </div>
   );
 }
