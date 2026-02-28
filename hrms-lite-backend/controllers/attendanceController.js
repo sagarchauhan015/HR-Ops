@@ -43,9 +43,12 @@ exports.getAttendanceByEmployee = async (req, res) => {
 
     const records = await Attendance
       .find({ employee: employeeId })
-      .populate("employee");
+      .populate({ path: "employee", match: { isActive: true } });
 
-    res.json(records);
+    // Filter out records where employee is null (inactive)
+    const activeRecords = records.filter(record => record.employee !== null);
+
+    res.json(activeRecords);
   } catch (err) {
     res.status(500).json({ message: "Server error" });
   }
@@ -78,9 +81,13 @@ exports.getAttendanceByDate = async (req, res) => {
 
 exports.getStats = async (req, res) => {
   try {
-    const totalEmployees = await require("../models/Employee").countDocuments();
-    const totalAttendance = await Attendance.countDocuments();
+    const Employee = require("../models/Employee");
+    const activeEmployeeIds = await Employee.find({ isActive: true }).distinct('_id');
+    
+    const totalEmployees = activeEmployeeIds.length;
+    const totalAttendance = await Attendance.countDocuments({ employee: { $in: activeEmployeeIds } });
     const totalPresentDays = await Attendance.countDocuments({
+      employee: { $in: activeEmployeeIds },
       status: { $regex: /^present$/i }
     });
 

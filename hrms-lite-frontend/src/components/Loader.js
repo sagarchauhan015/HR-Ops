@@ -1,3 +1,7 @@
 export default function Loader() {
-  return <p className="center">Loading...</p>;
+  return (
+    <div className="loader-container">
+      <div className="loader"></div>
+    </div>
+  );
 }

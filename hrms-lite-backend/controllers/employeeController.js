@@ -10,11 +10,11 @@ exports.addEmployee = async (req, res) => {
 };
 
 exports.getEmployees = async (req, res) => {
-  const employees = await Employee.find();
+  const employees = await Employee.find({ isActive: true });
   res.json(employees);
 };
 
 exports.deleteEmployee = async (req, res) => {
-  await Employee.findByIdAndDelete(req.params.id);
+  await Employee.findByIdAndUpdate(req.params.id, { isActive: false });
   res.json({ message: "Employee deleted" });
 };

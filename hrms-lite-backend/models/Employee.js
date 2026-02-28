@@ -10,6 +10,7 @@ const employeeSchema = new mongoose.Schema(
       match: [/^\S+@\S+\.\S+$/, "Invalid email format"],
     },
     department: { type: String, required: true },
+    isActive: { type: Boolean, default: true },
   },
   { timestamps: true },
 );
